@@ -14,7 +14,7 @@ namespace AttributesColorizer
         public AttributeClassifierFormat()
         {
             DisplayName = "Attribute";
-            ForegroundOpacity = 0.25;
+            ForegroundOpacity = 0.35;
         }
     }
 }
