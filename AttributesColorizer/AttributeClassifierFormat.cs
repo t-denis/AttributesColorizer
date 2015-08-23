@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.Composition;
-using System.Windows.Media;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
 
@@ -15,8 +14,7 @@ namespace AttributesColorizer
         public AttributeClassifierFormat()
         {
             DisplayName = "Attribute";
-            BackgroundColor = Colors.BlueViolet;
-            TextDecorations = System.Windows.TextDecorations.Underline;
+            ForegroundOpacity = 0.25;
         }
     }
 }
