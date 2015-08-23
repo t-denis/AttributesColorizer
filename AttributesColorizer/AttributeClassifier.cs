@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using AttributesColorizer.Core;
+using Microsoft.CodeAnalysis.Text;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 
@@ -35,11 +37,23 @@ namespace AttributesColorizer
         /// <returns>A list of ClassificationSpans that represent spans identified to be of this classification.</returns>
         public IList<ClassificationSpan> GetClassificationSpans(SnapshotSpan span)
         {
-            var result = new List<ClassificationSpan>()
-            {
-                new ClassificationSpan(new SnapshotSpan(span.Snapshot, new Span(span.Start, span.Length)), _classificationType)
-            };
+            var result = new List<ClassificationSpan>();
+            var document = span.Snapshot.GetOpenDocumentInCurrentContextWithChanges();
+            var syntaxTree = document.GetSyntaxTreeAsync().Result;
 
+            var codeParser = new CodeParser();
+            var attributes = codeParser.GetAttributeLists(syntaxTree);
+            var roslynSpan = new TextSpan(span.Start, span.Length);
+            foreach (var attribute in attributes)
+            {
+                if (attribute.OverlapsWith(roslynSpan))
+                {
+                    var snapshotSpan = new SnapshotSpan(span.Snapshot, attribute.Start, attribute.Length);
+                    var classificationSpan = new ClassificationSpan(snapshotSpan, _classificationType);
+                    result.Add(classificationSpan);
+                }
+            }
+            
             return result;
         }
     }
