@@ -7,4 +7,4 @@ In some cases it is convenient to darken that kind of information to be able to 
 ![screenshot before](https://github.com/t-denis/DarkAttributes/blob/master/Content/screenshot-before.png)
 ![screenshot after](https://github.com/t-denis/DarkAttributes/blob/master/Content/screenshot-after.png)
 
-The project requires Roslyn to build the syntax tree. Probably it will also use Roslyn to get a semantic model for further analysis, for example to implement a black/white list of attributes to be processed.
+The project requires Roslyn to build a syntax tree and a semantic model.
