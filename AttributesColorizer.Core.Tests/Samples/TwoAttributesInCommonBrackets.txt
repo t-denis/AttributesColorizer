@@ -1,0 +1,19 @@
+﻿using System;
+
+namespace ConsoleApplication12
+{
+	[Serializable, Test]
+    class Program
+    {
+        static void Main(string[] args) { }
+
+        public object Add(object x, object y)
+        {
+            return (int)x + (int)y;
+        }
+    }
+
+    public class TestAttribute : Attribute
+    {
+    }
+}

@@ -1,0 +1,15 @@
+﻿using System;
+
+namespace ConsoleApplication12
+{
+    class Program
+    {
+        static void Main(string[] args) { }
+
+        [Test]
+        public object Add(object x, object y)
+        {
+            return (int)x + (int)y;
+        }
+    }
+}

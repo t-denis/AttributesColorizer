@@ -11,7 +11,7 @@ namespace AttributesColorizer.Core
     public class CodeParser
     {
         [NotNull]
-        public IEnumerable<TextSpan> GetAttributes([NotNull] SyntaxTree syntaxTree)
+        public IEnumerable<TextSpan> GetAttributeLists([NotNull] SyntaxTree syntaxTree)
         {
             if (syntaxTree == null) throw new ArgumentNullException(nameof(syntaxTree));
             return syntaxTree.GetRoot()
