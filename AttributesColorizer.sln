@@ -5,7 +5,9 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttributesColorizer", "AttributesColorizer\AttributesColorizer.csproj", "{7FB6DD59-690F-4792-BA04-077D66A96FCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttributesColorizer.Tests", "AttributesColorizer.Tests\AttributesColorizer.Tests.csproj", "{3BBDC164-9578-4096-8AB7-209D09751BA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttributesColorizer.Core", "AttributesColorizer.Core\AttributesColorizer.Core.csproj", "{FBD04AD1-A3ED-493A-A64D-486B1F834112}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttributesColorizer.Core.Tests", "AttributesColorizer.Core.Tests\AttributesColorizer.Core.Tests.csproj", "{E749DEA4-6FCE-4E46-BB65-19663F101756}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,14 @@ Global
 		{7FB6DD59-690F-4792-BA04-077D66A96FCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FB6DD59-690F-4792-BA04-077D66A96FCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FB6DD59-690F-4792-BA04-077D66A96FCC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3BBDC164-9578-4096-8AB7-209D09751BA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3BBDC164-9578-4096-8AB7-209D09751BA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3BBDC164-9578-4096-8AB7-209D09751BA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3BBDC164-9578-4096-8AB7-209D09751BA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBD04AD1-A3ED-493A-A64D-486B1F834112}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBD04AD1-A3ED-493A-A64D-486B1F834112}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBD04AD1-A3ED-493A-A64D-486B1F834112}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBD04AD1-A3ED-493A-A64D-486B1F834112}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E749DEA4-6FCE-4E46-BB65-19663F101756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E749DEA4-6FCE-4E46-BB65-19663F101756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E749DEA4-6FCE-4E46-BB65-19663F101756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E749DEA4-6FCE-4E46-BB65-19663F101756}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
