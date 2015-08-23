@@ -1,38 +1,18 @@
-﻿//------------------------------------------------------------------------------
-// <copyright file="AttributeClassifier.cs" company="Company">
-//     Copyright (c) Company.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 
 namespace AttributesColorizer
 {
-    /// <summary>
-    /// Classifier that classifies all text as an instance of the "AttributeClassifier" classification type.
-    /// </summary>
     internal class AttributeClassifier : IClassifier
     {
-        /// <summary>
-        /// Classification type.
-        /// </summary>
-        private readonly IClassificationType classificationType;
+        private readonly IClassificationType _classificationType;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AttributeClassifier"/> class.
-        /// </summary>
-        /// <param name="registry">Classification registry.</param>
         internal AttributeClassifier(IClassificationTypeRegistryService registry)
         {
-            this.classificationType = registry.GetClassificationType("AttributeClassifier");
+            _classificationType = registry.GetClassificationType(Constants.AttributeClassificationTypeName);
         }
-
-        #region IClassifier
-
-#pragma warning disable 67
 
         /// <summary>
         /// An event that occurs when the classification of a span of text has changed.
@@ -43,8 +23,6 @@ namespace AttributesColorizer
         /// affecting the span.
         /// </remarks>
         public event EventHandler<ClassificationChangedEventArgs> ClassificationChanged;
-
-#pragma warning restore 67
 
         /// <summary>
         /// Gets all the <see cref="ClassificationSpan"/> objects that intersect with the given range of text.
@@ -59,12 +37,10 @@ namespace AttributesColorizer
         {
             var result = new List<ClassificationSpan>()
             {
-                new ClassificationSpan(new SnapshotSpan(span.Snapshot, new Span(span.Start, span.Length)), this.classificationType)
+                new ClassificationSpan(new SnapshotSpan(span.Snapshot, new Span(span.Start, span.Length)), _classificationType)
             };
 
             return result;
         }
-
-        #endregion
     }
 }
