@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AttributesColorizer.Core.Tests
+namespace DarkAttributes.Core.Tests
 {
     [TestClass]
     public class CodeParserTests

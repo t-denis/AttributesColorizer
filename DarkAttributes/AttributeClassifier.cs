@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Diagnostics;
-using AttributesColorizer.Core;
+using DarkAttributes.Core;
 using Microsoft.CodeAnalysis.Text;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 
-namespace AttributesColorizer
+namespace DarkAttributes
 {
     internal class AttributeClassifier : IClassifier
     {

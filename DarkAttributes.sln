@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttributesColorizer", "AttributesColorizer\AttributesColorizer.csproj", "{7FB6DD59-690F-4792-BA04-077D66A96FCC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkAttributes", "DarkAttributes\DarkAttributes.csproj", "{7FB6DD59-690F-4792-BA04-077D66A96FCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttributesColorizer.Core", "AttributesColorizer.Core\AttributesColorizer.Core.csproj", "{FBD04AD1-A3ED-493A-A64D-486B1F834112}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkAttributes.Core", "DarkAttributes.Core\DarkAttributes.Core.csproj", "{FBD04AD1-A3ED-493A-A64D-486B1F834112}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttributesColorizer.Core.Tests", "AttributesColorizer.Core.Tests\AttributesColorizer.Core.Tests.csproj", "{E749DEA4-6FCE-4E46-BB65-19663F101756}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkAttributes.Core.Tests", "DarkAttributes.Core.Tests\DarkAttributes.Core.Tests.csproj", "{E749DEA4-6FCE-4E46-BB65-19663F101756}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

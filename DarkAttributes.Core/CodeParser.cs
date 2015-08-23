@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 
-namespace AttributesColorizer.Core
+namespace DarkAttributes.Core
 {
     public class CodeParser
     {

@@ -17,8 +17,8 @@
     <ProjectGuid>{7FB6DD59-690F-4792-BA04-077D66A96FCC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AttributesColorizer</RootNamespace>
-    <AssemblyName>AttributesColorizer</AssemblyName>
+    <RootNamespace>DarkAttributes</RootNamespace>
+    <AssemblyName>DarkAttributes</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <GeneratePkgDefFile>false</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
@@ -147,9 +147,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AttributesColorizer.Core\AttributesColorizer.Core.csproj">
+    <ProjectReference Include="..\DarkAttributes.Core\DarkAttributes.Core.csproj">
       <Project>{fbd04ad1-a3ed-493a-a64d-486b1f834112}</Project>
-      <Name>AttributesColorizer.Core</Name>
+      <Name>DarkAttributes.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

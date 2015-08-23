@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
 
-namespace AttributesColorizer
+namespace DarkAttributes
 {
     [Export(typeof(IClassifierProvider))]
     [ContentType("CSharp")]

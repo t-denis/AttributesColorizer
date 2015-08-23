@@ -7,8 +7,8 @@
     <ProjectGuid>{FBD04AD1-A3ED-493A-A64D-486B1F834112}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AttributesColorizer.Core</RootNamespace>
-    <AssemblyName>AttributesColorizer.Core</AssemblyName>
+    <RootNamespace>DarkAttributes.Core</RootNamespace>
+    <AssemblyName>DarkAttributes.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
