@@ -70,7 +70,7 @@ namespace DarkAttributes
             var document = snapshot.GetOpenDocumentInCurrentContextWithChanges();
             var syntaxTree = document.GetSyntaxTreeAsync().Result;
 
-            var codeParser = new CodeParser();
+            var codeParser = new SyntaxTreeProcessor();
             var attributes = codeParser.GetAttributeLists(syntaxTree);
             return attributes.ToImmutableList();
         }

@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace DarkAttributes.Core
 {
-    public class CodeParser
+    public class SyntaxTreeProcessor
     {
         [NotNull]
         public IEnumerable<TextSpan> GetAttributeLists([NotNull] SyntaxTree syntaxTree)

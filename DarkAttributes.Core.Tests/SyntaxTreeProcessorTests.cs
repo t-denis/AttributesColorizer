@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace DarkAttributes.Core.Tests
 {
     [TestClass]
-    public class CodeParserTests
+    public class SyntaxTreeProcessorTests
     {
         [TestMethod]
         [Description("Single [Serializable] attribute")]
@@ -18,8 +18,8 @@ namespace DarkAttributes.Core.Tests
             var csCode = GetCode(@"Samples\SingleAttribute.txt");
             var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
 
-            var codeParser = new CodeParser();
-            var attributes = codeParser.GetAttributeLists(syntaxTree).ToList();
+            var syntaxTreeProcessor = new SyntaxTreeProcessor();
+            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
 
             Assert.AreEqual(1, attributes.Count);
             var startPosition = csCode.IndexOf("[Serializable]", StringComparison.Ordinal);
@@ -34,8 +34,8 @@ namespace DarkAttributes.Core.Tests
             var csCode = GetCode(@"Samples\CustomAttribute.txt");
             var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
 
-            var codeParser = new CodeParser();
-            var attributes = codeParser.GetAttributeLists(syntaxTree).ToList();
+            var syntaxTreeProcessor = new SyntaxTreeProcessor();
+            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
 
             Assert.AreEqual(1, attributes.Count);
             var startPosition = csCode.IndexOf("[Test]", StringComparison.Ordinal);
@@ -50,8 +50,8 @@ namespace DarkAttributes.Core.Tests
             var csCode = GetCode(@"Samples\TwoAttributes.txt");
             var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
 
-            var codeParser = new CodeParser();
-            var attributes = codeParser.GetAttributeLists(syntaxTree).ToList();
+            var syntaxTreeProcessor = new SyntaxTreeProcessor();
+            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
 
             Assert.AreEqual(2, attributes.Count);
         }
@@ -66,8 +66,8 @@ namespace DarkAttributes.Core.Tests
             var csCode = GetCode(@"Samples\TwoAttributesInCommonBrackets.txt");
             var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
 
-            var codeParser = new CodeParser();
-            var attributes = codeParser.GetAttributeLists(syntaxTree).ToList();
+            var syntaxTreeProcessor = new SyntaxTreeProcessor();
+            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
 
             Assert.AreEqual(1, attributes.Count);
         }
@@ -80,8 +80,8 @@ namespace DarkAttributes.Core.Tests
             var csCode = GetCode(@"Samples\ThreeInlinedAttributes.txt");
             var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
 
-            var codeParser = new CodeParser();
-            var attributes = codeParser.GetAttributeLists(syntaxTree).ToList();
+            var syntaxTreeProcessor = new SyntaxTreeProcessor();
+            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
 
             Assert.AreEqual(3, attributes.Count);
         }
@@ -94,8 +94,8 @@ namespace DarkAttributes.Core.Tests
             var csCode = GetCode(@"Samples\CommentedAttribute.txt");
             var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
 
-            var codeParser = new CodeParser();
-            var attributes = codeParser.GetAttributeLists(syntaxTree).ToList();
+            var syntaxTreeProcessor = new SyntaxTreeProcessor();
+            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
 
             Assert.AreEqual(0, attributes.Count);
         }
@@ -109,8 +109,8 @@ namespace DarkAttributes.Core.Tests
             var csCode = GetCode(@"Samples\UnknownAttribute.txt");
             var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
 
-            var codeParser = new CodeParser();
-            var attributes = codeParser.GetAttributeLists(syntaxTree).ToList();
+            var syntaxTreeProcessor = new SyntaxTreeProcessor();
+            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
 
             Assert.AreEqual(1, attributes.Count);
         }
@@ -123,8 +123,8 @@ namespace DarkAttributes.Core.Tests
             var csCode = GetCode(@"Samples\CustomAttributeWithArgs.txt");
             var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
 
-            var codeParser = new CodeParser();
-            var attributes = codeParser.GetAttributeLists(syntaxTree).ToList();
+            var syntaxTreeProcessor = new SyntaxTreeProcessor();
+            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
 
             Assert.AreEqual(1, attributes.Count);
 
