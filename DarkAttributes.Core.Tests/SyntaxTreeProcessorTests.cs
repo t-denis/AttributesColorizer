@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using JetBrains.Annotations;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DarkAttributes.Core.Tests
@@ -15,15 +16,11 @@ namespace DarkAttributes.Core.Tests
         [DeploymentItem(@"Samples\SingleAttribute.txt", "Samples")]
         public void SingleAttribute()
         {
-            var csCode = GetCode(@"Samples\SingleAttribute.txt");
-            var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
+            var parseResult = ParseFile(@"Samples\SingleAttribute.txt");
 
-            var syntaxTreeProcessor = new SyntaxTreeProcessor();
-            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
-
-            Assert.AreEqual(1, attributes.Count);
-            var startPosition = csCode.IndexOf("[Serializable]", StringComparison.Ordinal);
-            Assert.AreEqual(startPosition, attributes.Single().Start);
+            Assert.AreEqual(1, parseResult.AttributeSpans.Count);
+            var startPosition = parseResult.SourceCode.IndexOf("[Serializable]", StringComparison.Ordinal);
+            Assert.AreEqual(startPosition, parseResult.AttributeSpans.Single().Start);
         }
 
         [TestMethod]
@@ -31,15 +28,11 @@ namespace DarkAttributes.Core.Tests
         [DeploymentItem(@"Samples\CustomAttribute.txt", "Samples")]
         public void CustomAttribute()
         {
-            var csCode = GetCode(@"Samples\CustomAttribute.txt");
-            var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
-
-            var syntaxTreeProcessor = new SyntaxTreeProcessor();
-            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
-
-            Assert.AreEqual(1, attributes.Count);
-            var startPosition = csCode.IndexOf("[Test]", StringComparison.Ordinal);
-            Assert.AreEqual(startPosition, attributes.Single().Start);
+            var parseResult = ParseFile(@"Samples\CustomAttribute.txt");
+            
+            Assert.AreEqual(1, parseResult.AttributeSpans.Count);
+            var startPosition = parseResult.SourceCode.IndexOf("[Test]", StringComparison.Ordinal);
+            Assert.AreEqual(startPosition, parseResult.AttributeSpans.Single().Start);
         }
 
         [TestMethod]
@@ -47,13 +40,9 @@ namespace DarkAttributes.Core.Tests
         [DeploymentItem(@"Samples\TwoAttributes.txt", "Samples")]
         public void TwoAttributes()
         {
-            var csCode = GetCode(@"Samples\TwoAttributes.txt");
-            var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
-
-            var syntaxTreeProcessor = new SyntaxTreeProcessor();
-            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
-
-            Assert.AreEqual(2, attributes.Count);
+            var parseResult = ParseFile(@"Samples\TwoAttributes.txt");
+            
+            Assert.AreEqual(2, parseResult.AttributeSpans.Count);
         }
 
         [TestMethod]
@@ -63,13 +52,9 @@ namespace DarkAttributes.Core.Tests
         [DeploymentItem(@"Samples\TwoAttributesInCommonBrackets.txt", "Samples")]
         public void TwoAttributesInCommonBrackets()
         {
-            var csCode = GetCode(@"Samples\TwoAttributesInCommonBrackets.txt");
-            var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
-
-            var syntaxTreeProcessor = new SyntaxTreeProcessor();
-            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
-
-            Assert.AreEqual(1, attributes.Count);
+            var parseResult = ParseFile(@"Samples\TwoAttributesInCommonBrackets.txt");
+            
+            Assert.AreEqual(1, parseResult.AttributeSpans.Count);
         }
 
         [TestMethod]
@@ -77,13 +62,9 @@ namespace DarkAttributes.Core.Tests
         [DeploymentItem(@"Samples\ThreeInlinedAttributes.txt", "Samples")]
         public void ThreeInlinedAttributes()
         {
-            var csCode = GetCode(@"Samples\ThreeInlinedAttributes.txt");
-            var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
-
-            var syntaxTreeProcessor = new SyntaxTreeProcessor();
-            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
-
-            Assert.AreEqual(3, attributes.Count);
+            var parseResult = ParseFile(@"Samples\ThreeInlinedAttributes.txt");
+            
+            Assert.AreEqual(3, parseResult.AttributeSpans.Count);
         }
 
         [TestMethod]
@@ -91,13 +72,9 @@ namespace DarkAttributes.Core.Tests
         [DeploymentItem(@"Samples\CommentedAttribute.txt", "Samples")]
         public void CommentedAttribute()
         {
-            var csCode = GetCode(@"Samples\CommentedAttribute.txt");
-            var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
-
-            var syntaxTreeProcessor = new SyntaxTreeProcessor();
-            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
-
-            Assert.AreEqual(0, attributes.Count);
+            var parseResult = ParseFile(@"Samples\CommentedAttribute.txt");
+            
+            Assert.AreEqual(0, parseResult.AttributeSpans.Count);
         }
 
         [TestMethod]
@@ -106,13 +83,9 @@ namespace DarkAttributes.Core.Tests
         [DeploymentItem(@"Samples\UnknownAttribute.txt", "Samples")]
         public void UnknownAttribute()
         {
-            var csCode = GetCode(@"Samples\UnknownAttribute.txt");
-            var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
-
-            var syntaxTreeProcessor = new SyntaxTreeProcessor();
-            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
-
-            Assert.AreEqual(1, attributes.Count);
+            var parseResult = ParseFile(@"Samples\UnknownAttribute.txt");
+            
+            Assert.AreEqual(1, parseResult.AttributeSpans.Count);
         }
 
         [TestMethod]
@@ -120,31 +93,38 @@ namespace DarkAttributes.Core.Tests
         [DeploymentItem(@"Samples\CustomAttributeWithArgs.txt", "Samples")]
         public void CustomAttributeWithArgs()
         {
-            var csCode = GetCode(@"Samples\CustomAttributeWithArgs.txt");
-            var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
+            var parseResult = ParseFile(@"Samples\CustomAttributeWithArgs.txt");
+            
+            Assert.AreEqual(1, parseResult.AttributeSpans.Count);
 
-            var syntaxTreeProcessor = new SyntaxTreeProcessor();
-            var attributes = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList();
-
-            Assert.AreEqual(1, attributes.Count);
-
-            var attribute = attributes.Single();
+            var attribute = parseResult.AttributeSpans.Single();
             var attributeString = "[Test(1, IntProperty = 2)]";
-            var startPosition = csCode.IndexOf(attributeString, StringComparison.Ordinal);
+            var startPosition = parseResult.SourceCode.IndexOf(attributeString, StringComparison.Ordinal);
             var length = attributeString.Length;
             Assert.AreEqual(startPosition, attribute.Start);
             Assert.AreEqual(length, attribute.Length);
         }
 
-        
-
-        [NotNull]
-        private static string GetCode([NotNull] string file)
+        private ParseResult ParseFile(string path)
         {
-            Assert.IsTrue(File.Exists(file), $"deployment failed: {file} did not get deployed");
+            Assert.IsTrue(File.Exists(path), $"deployment failed: {path} did not get deployed");
 
-            var csCode = File.ReadAllText(file);
-            return csCode;
+            var csCode = File.ReadAllText(path);
+            var syntaxTree = CSharpSyntaxTree.ParseText(csCode);
+
+            var syntaxTreeProcessor = new SyntaxTreeProcessor();
+            var testResult = new ParseResult
+            {
+                SourceCode = csCode,
+                AttributeSpans = syntaxTreeProcessor.GetAttributeLists(syntaxTree).ToList()
+            };
+            return testResult;
+        }
+        
+        class ParseResult
+        {
+            public string SourceCode { get; set; }
+            public List<TextSpan> AttributeSpans { get; set; }
         }
     }
 }
