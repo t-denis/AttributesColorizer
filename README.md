@@ -1,4 +1,4 @@
-# DarkAttributes (aka Darka)
+# DarkAttributes (Darka)
 Provides an ability to specify a font for attributes in VS2015.
 
 Attributes used to provide declarative information about the code.
