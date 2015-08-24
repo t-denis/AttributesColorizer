@@ -61,6 +61,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DarkAttributesPackage.cs" />
+    <Compile Include="ExtensionSettings.cs" />
     <Compile Include="ParsingResult.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
