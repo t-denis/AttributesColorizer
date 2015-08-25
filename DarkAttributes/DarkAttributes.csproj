@@ -55,13 +55,12 @@
   <ItemGroup>
     <Compile Include="AttributeClassificationTypeDefinition.cs" />
     <Compile Include="AttributeClassifier.cs" />
-    <Compile Include="AttributeClassifierFormat.cs" />
     <Compile Include="AttributeClassifierProvider.cs" />
     <Compile Include="DarkAttributesOptionsPage.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DarkAttributesPackage.cs" />
-    <Compile Include="ExtensionSettings.cs" />
+    <Compile Include="SettingsStore.cs" />
     <Compile Include="TextPropertiesService.cs" />
     <Compile Include="ParsingResult.cs" />
     <Compile Include="Constants.cs" />

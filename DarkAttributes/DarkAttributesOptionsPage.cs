@@ -13,12 +13,14 @@ namespace DarkAttributes
     {
         private readonly TextPropertiesService _textPropertiesService;
         private int _foregroundOpacity;
+        private readonly SVsServiceProvider _vsServiceProvider;
 
         public DarkAttributesOptionsPage()
         {
             var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
             var classicationFormatMapService = componentModel.GetService<IClassificationFormatMapService>();
             var classificationTypeRegistryService = componentModel.GetService<IClassificationTypeRegistryService>();
+            _vsServiceProvider = componentModel.GetService<SVsServiceProvider>();
             _textPropertiesService = new TextPropertiesService(classificationTypeRegistryService, classicationFormatMapService);
         }
 
@@ -33,7 +35,13 @@ namespace DarkAttributes
 
         public override void SaveSettingsToStorage()
         {
+            if (_foregroundOpacity < 0)
+                _foregroundOpacity = 0;
+            if (_foregroundOpacity > 100)
+                _foregroundOpacity = 100;
             _textPropertiesService.SetForegroundOpacity(_foregroundOpacity / 100.0);
+            var settingsStore = new SettingsStore(_vsServiceProvider);
+            settingsStore.SetInt32(Constants.StorageKeys.ForegroundOpacity, _foregroundOpacity);
         }
 
         public override void LoadSettingsFromStorage()
