@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
 
-namespace DarkAttributes
+namespace DarkAttributes.Definitions
 {
     internal static class AttributeClassificationTypeDefinition
     {

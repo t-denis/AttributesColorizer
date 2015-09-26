@@ -53,16 +53,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AttributeClassificationTypeDefinition.cs" />
-    <Compile Include="AttributeClassifier.cs" />
-    <Compile Include="AttributeClassifierProvider.cs" />
-    <Compile Include="DarkAttributesOptionsPage.cs">
+    <Compile Include="Definitions\AttributeClassificationTypeDefinition.cs" />
+    <Compile Include="Core\AttributeClassifier.cs" />
+    <Compile Include="Core\AttributeClassifierProvider.cs" />
+    <Compile Include="Settings\DarkAttributesOptionsPage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DarkAttributesPackage.cs" />
-    <Compile Include="SettingsStore.cs" />
-    <Compile Include="TextPropertiesService.cs" />
-    <Compile Include="ParsingResult.cs" />
+    <Compile Include="Definitions\DarkAttributesPackage.cs" />
+    <Compile Include="Settings\SettingsStore.cs" />
+    <Compile Include="Services\TextPropertiesService.cs" />
+    <Compile Include="Core\ParsingResult.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -271,6 +271,7 @@
       <ManifestResourceName>VSPackage</ManifestResourceName>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

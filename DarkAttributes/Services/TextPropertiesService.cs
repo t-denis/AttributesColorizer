@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.Text.Classification;
 
-namespace DarkAttributes
+namespace DarkAttributes.Services
 {
     public class TextPropertiesService
     {

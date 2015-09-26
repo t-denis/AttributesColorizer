@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Settings;
 
-namespace DarkAttributes
+namespace DarkAttributes.Settings
 {
     public class SettingsStore
     {

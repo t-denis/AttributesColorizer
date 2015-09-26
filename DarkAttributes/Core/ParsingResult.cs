@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 using Microsoft.CodeAnalysis.Text;
 using Microsoft.VisualStudio.Text;
 
-namespace DarkAttributes
+namespace DarkAttributes.Core
 {
     public class ParsingResult
     {

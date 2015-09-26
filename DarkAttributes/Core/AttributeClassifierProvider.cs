@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.Composition;
+using DarkAttributes.Services;
+using DarkAttributes.Settings;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
 
-namespace DarkAttributes
+namespace DarkAttributes.Core
 {
     [Export(typeof(IClassifierProvider))]
     [ContentType("CSharp")]
