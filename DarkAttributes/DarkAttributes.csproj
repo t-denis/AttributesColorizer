@@ -56,11 +56,11 @@
     <Compile Include="Definitions\AttributeClassificationTypeDefinition.cs" />
     <Compile Include="Core\AttributeClassifier.cs" />
     <Compile Include="Core\AttributeClassifierProvider.cs" />
-    <Compile Include="Settings\DarkAttributesOptionsPage.cs">
+    <Compile Include="Pages\DarkAttributesOptionsPage.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Definitions\DarkAttributesPackage.cs" />
-    <Compile Include="Settings\SettingsStore.cs" />
+    <Compile Include="Services\StorageService.cs" />
     <Compile Include="Services\TextPropertiesService.cs" />
     <Compile Include="Core\ParsingResult.cs" />
     <Compile Include="Constants.cs" />

@@ -6,7 +6,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
-using DarkAttributes.Settings;
+using DarkAttributes.Pages;
 using Microsoft.VisualStudio.Shell;
 
 namespace DarkAttributes.Definitions

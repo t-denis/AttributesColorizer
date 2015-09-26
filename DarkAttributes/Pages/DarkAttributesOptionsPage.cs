@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text.Classification;
 
-namespace DarkAttributes.Settings
+namespace DarkAttributes.Pages
 {
     [ClassInterface(ClassInterfaceType.AutoDual)]
     [CLSCompliant(false), ComVisible(true)]
@@ -33,7 +33,7 @@ namespace DarkAttributes.Settings
             get { return _foregroundOpacity; }
             set { _foregroundOpacity = value; }
         }
-
+        
         public override void SaveSettingsToStorage()
         {
             if (_foregroundOpacity < 0)
@@ -41,7 +41,7 @@ namespace DarkAttributes.Settings
             if (_foregroundOpacity > 100)
                 _foregroundOpacity = 100;
             _textPropertiesService.SetForegroundOpacity(_foregroundOpacity / 100.0);
-            var settingsStore = new SettingsStore(_vsServiceProvider);
+            var settingsStore = new StorageService(_vsServiceProvider);
             settingsStore.SetInt32(Constants.StorageKeys.ForegroundOpacity, _foregroundOpacity);
         }
 

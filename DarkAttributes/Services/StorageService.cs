@@ -2,12 +2,16 @@
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Settings;
 
-namespace DarkAttributes.Settings
+namespace DarkAttributes.Services
 {
-    public class SettingsStore
+    /// <summary>
+    /// A service that provides a reliable storage.
+    /// For example, AppSettings file location can change after VS update. So it's unsafe to store values there.
+    /// </summary>
+    public class StorageService
     {
         private readonly ShellSettingsManager _shellSettingsManager;
-        public SettingsStore(SVsServiceProvider serviceProvider)
+        public StorageService(SVsServiceProvider serviceProvider)
         {
             _shellSettingsManager = new ShellSettingsManager(serviceProvider);
         }

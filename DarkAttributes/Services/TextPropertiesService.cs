@@ -2,6 +2,10 @@
 
 namespace DarkAttributes.Services
 {
+    /// <summary>
+    /// A service that works with properties of the classification type.
+    /// VS drawing engine uses these values to colorize text.
+    /// </summary>
     public class TextPropertiesService
     {
         private readonly IClassificationFormatMap _classificationFormatMap;
