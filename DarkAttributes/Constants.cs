@@ -8,6 +8,7 @@
         public class StorageKeys
         {
             public const string ForegroundOpacity = "ForegroundOpacity";
+            public const string Blacklist = "AttributesBlacklist";
         }
 
         public const int DefaultForegroundOpacity = 30;

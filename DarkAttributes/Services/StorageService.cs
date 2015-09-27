@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.Settings;
+﻿using System.IO;
+using System.Runtime.Serialization.Json;
+using System.Text;
+using Microsoft.VisualStudio.Settings;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Settings;
 
@@ -31,6 +34,45 @@ namespace DarkAttributes.Services
             var store = _shellSettingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);
             store.CreateCollection(Constants.ProjectName);
             store.SetInt32(Constants.ProjectName, key, value);
+        }
+
+        public string[] GetStringArray(string key, string[] defaultValue)
+        {
+            var store = _shellSettingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);
+            if (store.PropertyExists(Constants.ProjectName, key))
+            {
+                var json = store.GetString(Constants.ProjectName, key);
+                return FromJson<string[]>(json);
+            }
+            return defaultValue;
+        }
+
+        public void SetStringArray(string key, string[] value)
+        {
+            var store = _shellSettingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);
+            store.CreateCollection(Constants.ProjectName);
+
+            var serializedValue = ToJson(value);
+            store.SetString(Constants.ProjectName, key, serializedValue);
+        }
+
+        private static string ToJson<T>(T obj) where T : class
+        {
+            var serializer = new DataContractJsonSerializer(typeof(T));
+            using (var stream = new MemoryStream())
+            {
+                serializer.WriteObject(stream, obj);
+                return Encoding.Default.GetString(stream.ToArray());
+            }
+        }
+
+        private static T FromJson<T>(string json) where T : class
+        {
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(json)))
+            {
+                var serializer = new DataContractJsonSerializer(typeof(T));
+                return (T)serializer.ReadObject(ms);
+            }
         }
     }
 }
