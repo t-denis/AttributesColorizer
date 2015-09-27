@@ -53,6 +53,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Core\SyntaxTreeProcessor.cs" />
     <Compile Include="Definitions\AttributeClassificationTypeDefinition.cs" />
     <Compile Include="Core\AttributeClassifier.cs" />
     <Compile Include="Core\AttributeClassifierProvider.cs" />
@@ -251,12 +252,6 @@
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DarkAttributes.Core\DarkAttributes.Core.csproj">
-      <Project>{fbd04ad1-a3ed-493a-a64d-486b1f834112}</Project>
-      <Name>DarkAttributes.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
