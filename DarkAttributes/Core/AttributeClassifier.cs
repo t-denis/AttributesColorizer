@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
+using DarkAttributes.Services;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
@@ -38,6 +41,7 @@ namespace DarkAttributes.Core
         /// <returns>A list of ClassificationSpans that represent spans identified to be of this classification.</returns>
         public IList<ClassificationSpan> GetClassificationSpans(SnapshotSpan span)
         {
+            // Be lazy. If we already parsed that span, then no need to parse it again
             IReadOnlyCollection<TextSpan> attributeSpans;
             if (_lastParsingResult != null && _lastParsingResult.TextSnapshot == span.Snapshot)
             {
@@ -70,8 +74,18 @@ namespace DarkAttributes.Core
             var syntaxTree = document.GetSyntaxTreeAsync().Result;
 
             var codeParser = new SyntaxTreeProcessor();
-            var attributes = codeParser.GetAttributeLists(syntaxTree);
-            return attributes.ToImmutableList();
+            var attributes = codeParser.GetAttributeListsNodes(syntaxTree);
+            IEnumerable<SyntaxNode> nodes = attributes;
+
+            var enableFilters = StorageService.Instance.GetBoolean(Constants.StorageKeys.EnableFilters, false);
+            if (enableFilters)
+            {
+                var semanticModel = document.GetSemanticModelAsync().Result;
+                var blacklist = StorageService.Instance.GetStringArray(Constants.StorageKeys.Blacklist, null);
+                var semanticModelProcessor = new SemanticModelProcessor();
+                nodes = semanticModelProcessor.FilterAttributes(semanticModel, attributes, blacklist);
+            }
+            return nodes.Select(x => x.Span).ToImmutableList();
         }
     }
 }

@@ -53,6 +53,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Core\SemanticModelProcessor.cs" />
     <Compile Include="Core\SyntaxTreeProcessor.cs" />
     <Compile Include="Definitions\AttributeClassificationTypeDefinition.cs" />
     <Compile Include="Core\AttributeClassifier.cs" />
@@ -111,6 +112,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualStudio.CommandBars, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>

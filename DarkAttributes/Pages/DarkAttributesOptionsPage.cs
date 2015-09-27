@@ -17,13 +17,16 @@ namespace DarkAttributes.Pages
 
         [Category("2. Filter")]
         [DisplayName("1. Enable filter")]
-        [Description("Use black list")]
+        [Description("Filter attributes to darken. Otherwise all attributes will be darkened.")]
         public bool EnableFilters { get; set; }
 
 
         [Category("2. Filter")]
-        [DisplayName("2. Black list")]
-        [Description("A list of attributes that will not be darkened. Wildcards supported (System.ComponentModel.*)")]
+        [DisplayName("2. List of attributes to darken")]
+        [Description("A list of attributes to darken. Attributes can be specified in the following ways: " +
+                     "short name (Display), name (DisplayAttribute), " +
+                     "full name (System.ComponentModel.DataAnnotations.DisplayAttribute) " +
+                     "or by using wildcards (System.ComponentModel.DataAnnotations.*)")]
         public string[] Blacklist { get; set; }
         
         public override void SaveSettingsToStorage()

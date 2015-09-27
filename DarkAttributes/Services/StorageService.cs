@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Runtime.Serialization.Json;
-using System.Text;
-using DarkAttributes.Infrastructure;
+﻿using DarkAttributes.Infrastructure;
 using Microsoft.VisualStudio.Settings;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Settings;
