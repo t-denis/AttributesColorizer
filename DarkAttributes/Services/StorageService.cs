@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using DarkAttributes.Infrastructure;
 using Microsoft.VisualStudio.Settings;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Settings;
@@ -23,6 +24,8 @@ namespace DarkAttributes.Services
         /// <summary> Preconfigured instance </summary>
         public static StorageService Instance { get; set; }
 
+        #region Int32
+
         public int GetInt32(string key, int defaultValue)
         {
             var store = _shellSettingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);
@@ -36,13 +39,17 @@ namespace DarkAttributes.Services
             store.SetInt32(Constants.ProjectName, key, value);
         }
 
+        #endregion
+        
+        #region StringArray
+
         public string[] GetStringArray(string key, string[] defaultValue)
         {
             var store = _shellSettingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);
             if (store.PropertyExists(Constants.ProjectName, key))
             {
                 var json = store.GetString(Constants.ProjectName, key);
-                return FromJson<string[]>(json);
+                return JsonConverter.FromJson<string[]>(json);
             }
             return defaultValue;
         }
@@ -52,27 +59,32 @@ namespace DarkAttributes.Services
             var store = _shellSettingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);
             store.CreateCollection(Constants.ProjectName);
 
-            var serializedValue = ToJson(value);
+            var serializedValue = JsonConverter.ToJson(value);
             store.SetString(Constants.ProjectName, key, serializedValue);
         }
 
-        private static string ToJson<T>(T obj) where T : class
+        #endregion
+        
+        #region Boolean
+
+        public bool GetBoolean(string key, bool defaultValue)
         {
-            var serializer = new DataContractJsonSerializer(typeof(T));
-            using (var stream = new MemoryStream())
-            {
-                serializer.WriteObject(stream, obj);
-                return Encoding.Default.GetString(stream.ToArray());
-            }
+            var store = _shellSettingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);
+            return store.GetBoolean(Constants.ProjectName, key, defaultValue);
         }
 
-        private static T FromJson<T>(string json) where T : class
+        public void SetBoolean(string key, bool value)
         {
-            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(json)))
-            {
-                var serializer = new DataContractJsonSerializer(typeof(T));
-                return (T)serializer.ReadObject(ms);
-            }
+            var store = _shellSettingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);
+            store.CreateCollection(Constants.ProjectName);
+            store.SetBoolean(Constants.ProjectName, key, value);
         }
+
+        #endregion
+
+
+        
+
+        
     }
 }

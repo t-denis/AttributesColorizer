@@ -8,6 +8,7 @@
         public class StorageKeys
         {
             public const string ForegroundOpacity = "ForegroundOpacity";
+            public const string EnableFilters = "EnableFilters";
             public const string Blacklist = "AttributesBlacklist";
         }
 

@@ -57,6 +57,7 @@
     <Compile Include="Definitions\AttributeClassificationTypeDefinition.cs" />
     <Compile Include="Core\AttributeClassifier.cs" />
     <Compile Include="Core\AttributeClassifierProvider.cs" />
+    <Compile Include="Infrastructure\JsonConverter.cs" />
     <Compile Include="Pages\DarkAttributesOptionsPage.cs">
       <SubType>Component</SubType>
     </Compile>
