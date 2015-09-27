@@ -9,5 +9,7 @@
         {
             public const string ForegroundOpacity = "ForegroundOpacity";
         }
+
+        public const int DefaultForegroundOpacity = 30;
     }
 }

@@ -4,10 +4,15 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.Composition;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using DarkAttributes.Pages;
+using DarkAttributes.Services;
+using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Text.Classification;
 
 namespace DarkAttributes.Definitions
 {
@@ -33,6 +38,8 @@ namespace DarkAttributes.Definitions
     [Guid(DarkAttributesPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     [ProvideOptionPage(typeof(DarkAttributesOptionsPage), "DarkAttributes", "General", 0, 0, true)]
+    [ProvideAutoLoad(UIContextGuids.NoSolution)]
+    [ProvideAutoLoad(UIContextGuids.SolutionExists)]
     public sealed class DarkAttributesPackage : Package
     {
         /// <summary>
@@ -60,8 +67,17 @@ namespace DarkAttributes.Definitions
         protected override void Initialize()
         {
             base.Initialize();
+
+            var componentModel = (IComponentModel)GetGlobalService(typeof(SComponentModel));
+            var classificationFormatMapService = componentModel.GetService<IClassificationFormatMapService>();
+            var classificationTypeRegistryService = componentModel.GetService<IClassificationTypeRegistryService>();
+            var vsServiceProvider = componentModel.GetService<SVsServiceProvider>();
+
+            StorageService.Instance = new StorageService(vsServiceProvider);
+            TextPropertiesService.Instance = new TextPropertiesService(classificationTypeRegistryService, classificationFormatMapService);
+            TextPropertiesService.Instance.UpdateTextPropertiesFromStorage();
         }
-        
+
         #endregion
     }
 }

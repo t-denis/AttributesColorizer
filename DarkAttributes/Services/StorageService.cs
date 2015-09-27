@@ -5,16 +5,20 @@ using Microsoft.VisualStudio.Shell.Settings;
 namespace DarkAttributes.Services
 {
     /// <summary>
-    /// A service that provides a reliable storage.
-    /// For example, AppSettings file location can change after VS update. So it's unsafe to store values there.
+    ///     A service that provides a reliable storage.
+    ///     For example, AppSettings file location can change after VS update. So it's unsafe to store values there.
     /// </summary>
     public class StorageService
     {
         private readonly ShellSettingsManager _shellSettingsManager;
+
         public StorageService(SVsServiceProvider serviceProvider)
         {
             _shellSettingsManager = new ShellSettingsManager(serviceProvider);
         }
+
+        /// <summary> Preconfigured instance </summary>
+        public static StorageService Instance { get; set; }
 
         public int GetInt32(string key, int defaultValue)
         {
