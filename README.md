@@ -1,6 +1,4 @@
 # DarkAttributes
-Provides an ability to specify the opacity level for attributes in VS2015.
-
 Attributes allow you to add a declarative information to a code.
 But in some cases it is convenient to darken that kind of information to be able to focus on the code itself.
 
