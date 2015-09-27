@@ -44,7 +44,12 @@ namespace DarkAttributes
         {
             public const int Opacity = 40;
             public const bool IsFilteringEnabled = false;
-            public const string[] Blacklist = null;
+            public static readonly string[] Blacklist =
+            {
+                "System.ComponentModel.*",
+                "System.Runtime.Serialization.*",
+                "JetBrains.Annotations.*"
+            };
         }
 
         private static class StorageKeys
