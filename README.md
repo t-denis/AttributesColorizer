@@ -7,3 +7,12 @@ But in some cases it is convenient to darken that kind of information to be able
 
 The implementation requires Roslyn to build a syntax tree and a semantic model.
 Currently only C# is supported.
+
+###Debug notes
+Open project's Properties > Debug
+
+Set "Start external program" to:
+`C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe` (or wherever you installed VS)
+
+Set "Command line arguments" to:
+`/rootsuffix Exp`
