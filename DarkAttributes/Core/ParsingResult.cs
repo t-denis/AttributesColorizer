@@ -7,13 +7,15 @@ namespace DarkAttributes.Core
 {
     public class ParsingResult
     {
-        public ParsingResult(ITextSnapshot textSnapshot,
+        public ParsingResult(Settings settings,
+            ITextSnapshot textSnapshot,
             IEnumerable<TextSpan> attributeSpans)
         {
             TextSnapshot = textSnapshot;
             AttributeSpans = attributeSpans.ToImmutableArray();
         }
 
+        public Settings Settings { get; }
         public ITextSnapshot TextSnapshot { get; }
         public IReadOnlyCollection<TextSpan> AttributeSpans { get; }
     }

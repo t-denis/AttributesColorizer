@@ -4,12 +4,5 @@
     {
         public const string ProjectName = "DarkAttributes";
         public const string AttributeClassificationTypeName = "DarkAttributes.Attribute";
-
-        public class StorageKeys
-        {
-            public const string ForegroundOpacity = "ForegroundOpacity";
-        }
-
-        public const int DefaultForegroundOpacity = 30;
     }
 }

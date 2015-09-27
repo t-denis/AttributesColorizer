@@ -21,19 +21,20 @@ namespace DarkAttributes.Services
         /// <summary> Preconfigured instance </summary>
         public static TextPropertiesService Instance { get; set; }
 
-        public void SetForegroundOpacity(double opacity)
+        public void UpdateTextPropertiesFromSettings()
+        {
+            var settings = Settings.Load();
+            var opacity = settings.Opacity;
+            SetForegroundOpacity(opacity / 100.0);
+        }
+
+        private void SetForegroundOpacity(double opacity)
         {
             var currentProperties = _classificationFormatMap.GetExplicitTextProperties(_classificationType);
             if (currentProperties.ForegroundOpacity.Equals(opacity))
                 return;
             var newProperties = currentProperties.SetForegroundOpacity(opacity);
             _classificationFormatMap.AddExplicitTextProperties(_classificationType, newProperties);
-        }
-
-        public void UpdateTextPropertiesFromStorage()
-        {
-            var opacity = StorageService.Instance.GetInt32(Constants.StorageKeys.ForegroundOpacity, Constants.DefaultForegroundOpacity);
-            SetForegroundOpacity(opacity / 100.0);
         }
     }
 }
