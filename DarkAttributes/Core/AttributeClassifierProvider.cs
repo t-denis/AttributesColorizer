@@ -17,7 +17,7 @@ namespace DarkAttributes.Core
         public IClassifier GetClassifier(ITextBuffer buffer)
         {
             Initialize();
-            return buffer.Properties.GetOrCreateSingletonProperty(() => new AttributeClassifier(_classificationRegistry));
+            return buffer.Properties.GetOrCreateSingletonProperty(() => new AttributeClassifier(_classificationRegistry, buffer));
         }
 
         /// <summary> New instance is created and called every time when a file is opened in VS. </summary>

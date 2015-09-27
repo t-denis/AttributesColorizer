@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.InteropServices;
-using DarkAttributes.Services;
 using Microsoft.VisualStudio.Shell;
 
 namespace DarkAttributes.Pages
@@ -35,12 +35,7 @@ namespace DarkAttributes.Pages
                 ForegroundOpacity = 0;
             if (ForegroundOpacity > 100)
                 ForegroundOpacity = 100;
-            var settings = new Settings
-            {
-                Opacity = ForegroundOpacity,
-                IsFilteringEnabled = IsFilteringEnabled,
-                Blacklist = Blacklist
-            };
+            var settings = new Settings(ForegroundOpacity, IsFilteringEnabled, Blacklist);
             Settings.Save(settings);
         }
 
@@ -49,7 +44,7 @@ namespace DarkAttributes.Pages
             var settings = Settings.Load();
             ForegroundOpacity = settings.Opacity;
             IsFilteringEnabled = settings.IsFilteringEnabled;
-            Blacklist = settings.Blacklist;
+            Blacklist = settings.Blacklist?.ToArray();
         }
     }
 }

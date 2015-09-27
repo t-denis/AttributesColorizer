@@ -53,16 +53,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Caliburn.Micro\EventAggregator.cs" />
+    <Compile Include="Caliburn.Micro\ExtensionMethods.cs" />
     <Compile Include="Core\SemanticModelProcessor.cs" />
     <Compile Include="Core\SyntaxTreeProcessor.cs" />
     <Compile Include="Definitions\AttributeClassificationTypeDefinition.cs" />
     <Compile Include="Core\AttributeClassifier.cs" />
     <Compile Include="Core\AttributeClassifierProvider.cs" />
     <Compile Include="Infrastructure\JsonConverter.cs" />
+    <Compile Include="Messages\SettingsChangedMessage.cs" />
     <Compile Include="Pages\DarkAttributesOptionsPage.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Definitions\DarkAttributesPackage.cs" />
+    <Compile Include="Services\Bus.cs" />
     <Compile Include="Services\StorageService.cs" />
     <Compile Include="Services\TextPropertiesService.cs" />
     <Compile Include="Core\ParsingResult.cs" />
@@ -71,6 +75,7 @@
     <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

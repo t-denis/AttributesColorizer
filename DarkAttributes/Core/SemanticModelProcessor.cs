@@ -13,7 +13,7 @@ namespace DarkAttributes.Core
         /// Returns attributes to darken. Uses a blacklist to filter attributes
         /// </summary>
         public IEnumerable<SyntaxNode> FilterAttributes(SemanticModel semanticModel,
-            IEnumerable<AttributeListSyntax> attributes, string[] blacklist)
+            IEnumerable<AttributeListSyntax> attributes, IReadOnlyCollection<string> blacklist)
         {
             // Split list to separate attributes
             // check every attribute
@@ -54,7 +54,7 @@ namespace DarkAttributes.Core
             }
         }
 
-        private static BlacklistFilterResult FilterAttribute(string[] blacklist, string symbolName, string symbolFullName)
+        private static BlacklistFilterResult FilterAttribute(IReadOnlyCollection<string> blacklist, string symbolName, string symbolFullName)
         {
             foreach (var blacklistItem in blacklist)
             {
