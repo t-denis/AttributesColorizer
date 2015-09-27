@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using DarkAttributes.Services;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
@@ -75,17 +73,19 @@ namespace DarkAttributes.Core
 
             var codeParser = new SyntaxTreeProcessor();
             var attributes = codeParser.GetAttributeListsNodes(syntaxTree);
-            IEnumerable<SyntaxNode> nodes = attributes;
 
-            var enableFilters = StorageService.Instance.GetBoolean(Constants.StorageKeys.EnableFilters, false);
-            if (enableFilters)
+            var settings = Settings.Load();
+            if (settings.IsFilteringEnabled)
             {
                 var semanticModel = document.GetSemanticModelAsync().Result;
-                var blacklist = StorageService.Instance.GetStringArray(Constants.StorageKeys.Blacklist, null);
                 var semanticModelProcessor = new SemanticModelProcessor();
-                nodes = semanticModelProcessor.FilterAttributes(semanticModel, attributes, blacklist);
+                var nodes = semanticModelProcessor.FilterAttributes(semanticModel, attributes, settings.Blacklist);
+                return nodes.Select(x => x.Span).ToImmutableList();
             }
-            return nodes.Select(x => x.Span).ToImmutableList();
+            else
+            {
+                return attributes.Select(x => x.Span).ToImmutableList();
+            }
         }
     }
 }

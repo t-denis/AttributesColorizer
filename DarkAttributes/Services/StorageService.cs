@@ -8,6 +8,7 @@ namespace DarkAttributes.Services
     /// <summary>
     ///     A service that provides a reliable storage.
     ///     For example, AppSettings file location can change after VS update. So it's unsafe to store values there.
+    ///     For internal usage. Use <see cref="Settings" /> class to get settings.
     /// </summary>
     public class StorageService
     {
@@ -37,7 +38,7 @@ namespace DarkAttributes.Services
         }
 
         #endregion
-        
+
         #region StringArray
 
         public string[] GetStringArray(string key, string[] defaultValue)
@@ -61,7 +62,7 @@ namespace DarkAttributes.Services
         }
 
         #endregion
-        
+
         #region Boolean
 
         public bool GetBoolean(string key, bool defaultValue)
@@ -78,10 +79,5 @@ namespace DarkAttributes.Services
         }
 
         #endregion
-
-
-        
-
-        
     }
 }

@@ -75,7 +75,7 @@ namespace DarkAttributes.Definitions
 
             StorageService.Instance = new StorageService(vsServiceProvider);
             TextPropertiesService.Instance = new TextPropertiesService(classificationTypeRegistryService, classificationFormatMapService);
-            TextPropertiesService.Instance.UpdateTextPropertiesFromStorage();
+            TextPropertiesService.Instance.UpdateTextPropertiesFromSettings();
         }
 
         #endregion

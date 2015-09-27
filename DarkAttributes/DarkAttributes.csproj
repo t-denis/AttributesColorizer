@@ -68,6 +68,7 @@
     <Compile Include="Core\ParsingResult.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

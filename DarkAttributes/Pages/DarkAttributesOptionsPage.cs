@@ -18,7 +18,7 @@ namespace DarkAttributes.Pages
         [Category("2. Filter")]
         [DisplayName("1. Enable filter")]
         [Description("Filter attributes to darken. Otherwise all attributes will be darkened.")]
-        public bool EnableFilters { get; set; }
+        public bool IsFilteringEnabled { get; set; }
 
 
         [Category("2. Filter")]
@@ -35,18 +35,21 @@ namespace DarkAttributes.Pages
                 ForegroundOpacity = 0;
             if (ForegroundOpacity > 100)
                 ForegroundOpacity = 100;
-            StorageService.Instance.SetInt32(Constants.StorageKeys.ForegroundOpacity, ForegroundOpacity);
-            StorageService.Instance.SetBoolean(Constants.StorageKeys.EnableFilters, EnableFilters);
-            StorageService.Instance.SetStringArray(Constants.StorageKeys.Blacklist, Blacklist);
-            TextPropertiesService.Instance.UpdateTextPropertiesFromStorage();
+            var settings = new Settings
+            {
+                Opacity = ForegroundOpacity,
+                IsFilteringEnabled = IsFilteringEnabled,
+                Blacklist = Blacklist
+            };
+            Settings.Save(settings);
         }
 
         public override void LoadSettingsFromStorage()
         {
-            ForegroundOpacity = StorageService.Instance.GetInt32(Constants.StorageKeys.ForegroundOpacity,
-                Constants.DefaultForegroundOpacity);
-            EnableFilters = StorageService.Instance.GetBoolean(Constants.StorageKeys.EnableFilters, false);
-            Blacklist = StorageService.Instance.GetStringArray(Constants.StorageKeys.Blacklist, null);
+            var settings = Settings.Load();
+            ForegroundOpacity = settings.Opacity;
+            IsFilteringEnabled = settings.IsFilteringEnabled;
+            Blacklist = settings.Blacklist;
         }
     }
 }
