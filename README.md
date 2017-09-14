@@ -5,7 +5,7 @@ But in some cases it is convenient to darken that kind of information to be able
 ![screenshot before](https://github.com/t-denis/DarkAttributes/blob/master/Content/screenshot-before.png)
 ![screenshot after](https://github.com/t-denis/DarkAttributes/blob/master/Content/screenshot-after.png)
 
-There is an option to filter attributes to darken.
+There is an option to filter attributes to darken and to specify a desired opacity level.
 The implementation requires Roslyn to build a syntax tree and a semantic model.
 Currently only C# is supported.
 
