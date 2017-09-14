@@ -9,7 +9,7 @@ There is an option to filter attributes to darken.
 The implementation requires Roslyn to build a syntax tree and a semantic model.
 Currently only C# is supported.
 
-###Debug notes
+### Debug notes
 Open project's Properties > Debug
 
 Set "Start external program" to:
